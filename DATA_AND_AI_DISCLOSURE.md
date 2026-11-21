@@ -4,8 +4,8 @@
 
 ## Contributions
 
-- **Yin:** Story 1a, Story 3, Story 1b Views 1 and 3, Story 2 View 2, the current Story 2 View 3 and a basic version of View 1 (made first, because Rida had also worked on View 1), and the shared app that joins all stories. Yin also restyled Story 1b View 2 to the common layout, refreshed all data on 20 Nov 2026 and wrote the root documents.
-- **Anh:** the first version of Story 1b View 2 (licence mix by release year). Anh also checked the first 66 of the 91 incident types and a sample of 30 of the first 400 incident labels for Story 3.
+- **Yin:** Story 1a, Story 3, Story 1b Views 1 and 3, Story 2 View 2, the current Story 2 View 3 and a basic version of View 1 (made first, because Rida had also worked on View 1), and the shared app that joins all stories. Yin also renamed Story 1b View 3b to View 2, set the first year drawn and made the latest release date read from the data, refreshed all data on 20 Nov 2026 and wrote the root documents.
+- **Anh:** the first version of Story 1b View 2 (licence mix by release year), including the restyle to the shared layout. Anh also checked the first 66 of the 91 incident types and a sample of 30 of the first 400 incident labels for Story 3.
 - **Rida:** the initial Story 2 submission, including the first GPQA chart (`v3_benchmark.py`), and her own work on View 1. The split of View 1 between Yin and Rida is not certain.
 
 Claude assisted with code, checks and documents as listed under "Use of AI tools".
@@ -27,6 +27,10 @@ The app uses only public data. The details of each file are in `DATA_DICTIONARY.
 | Licence pages of open-weight models | Model developers (Hugging Face and GitHub) | Stories 1a and 1b | Read for the group's licence notes. Each page keeps its own terms |
 
 The group's own work is credited to the group and not to any source. It covers the licence class `licence_class_ours`, `licence_terms.json`, the 425 incident labels (343 of them model incidents), the 91 assigned incident types, the incident type grouping and the FMTI company table.
+
+## Chart forms
+
+The chart forms of the app (bars, scatter, step lines, heatmap) are standard forms. Four views follow a specific published chart. Each names it in its design decision and in its references and states what the group changed: Story 1b View 2 (Epoch AI report on open models, 2024), Story 2 View 1 (Epoch AI data insight of 29 May 2026), Story 2 View 3 (Epoch AI data insight on GPQA) and Story 3 View 1 (Foundation Model Transparency Index, December 2025).
 
 ## Personal data
 

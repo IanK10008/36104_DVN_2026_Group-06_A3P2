@@ -65,6 +65,8 @@ of models written in every segment, so no value needs hovering. The three classe
 blue, darkest for the most permissive, because the classes are ordered (from "allowed" to "not allowed") and every
 model here is open-weight. Rows read top to bottom in time, with the year's total under each label, as in View 1.
 
+**Based on** Figure 7 of the Epoch AI report "How far behind are open models?" ([Cottier et al., 2024](https://epoch.ai/blog/open-models-report)), which shows the share of notable models in each accessibility category by year as stacked bars. This view redesigns it for the bank's question. It keeps only open-weight models, uses the three licence classes of View 1, starts in 2024, draws horizontal bars with the number of models written in each segment, and takes the models from the Epoch capability file and not from the report's list of notable models.
+
 """
 
 LIMITS = f"""

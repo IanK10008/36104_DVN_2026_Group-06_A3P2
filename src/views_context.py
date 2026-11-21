@@ -334,6 +334,8 @@ shrinking, so the architect can tell the committee whether waiting for US access
 **Form chosen:** Two step lines over release date (Visual Vocabulary: *change over time*), with the gap shaded and
 every model shown as a faint dot. The step shape is honest about how the best score changes: it jumps when a new
 model is released and stays flat in between.
+
+**Based on** the chart in the Epoch AI data insight "Open models lag state-of-the-art closed models by 4 months" ([Edwards & Emberson, 2026](https://epoch.ai/data-insights/open-closed-eci-gap)), which draws step lines of the best capability score of closed and open-weight models over release date. This view redesigns it with the groups of this story. It compares the best restricted US model with the best accessible model, shades the gap, shows every model as a faint dot and gives the gap in months as well as in points. Epoch reports about 4 months and 8 points for its own groups, so the figures of this view differ because the groups and the end date differ.
 """
 
 

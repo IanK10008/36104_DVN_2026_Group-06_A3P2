@@ -182,21 +182,10 @@ REF = {
             "models*. Epoch AI. https://epoch.ai/data-insights/self-reported-gpqa",
     "ho": "Ho, A., Denain, J.-S., Atanasov, D., Albanie, S., & Shah, R. (2025). *A Rosetta Stone for AI benchmarks* "
           "[Preprint]. arXiv. https://arxiv.org/abs/2512.00193",
-    "chiang": "Chiang, W.-L., Zheng, L., Sheng, Y., Angelopoulos, A. N., Li, T., Li, D., Zhu, B., Zhang, H., Jordan, "
-              "M. I., Gonzalez, J. E., & Stoica, I. (2024). Chatbot Arena: An open platform for evaluating LLMs by "
-              "human preference. In *Proceedings of the 41st International Conference on Machine Learning* (Vol. 235, "
-              "pp. 8359\u20138388). PMLR. https://proceedings.mlr.press/v235/chiang24b.html",
-    "singh": "Singh, S., Nan, Y., Wang, A., D'souza, D., Kapoor, S., \u00dcst\u00fcn, A., Koyejo, S., Deng, Y., Longpre, S., "
-             "Smith, N. A., Ermis, B., Fadaee, M., & Hooker, S. (2025). *The leaderboard illusion* [Preprint]. arXiv. "
-             "https://doi.org/10.48550/arXiv.2504.20879",
-    "diakoulaki": "Diakoulaki, D., Mavrotas, G., & Papayannakis, L. (1995). Determining objective weights in multiple "
-                  "criteria problems: The CRITIC method. *Computers & Operations Research, 22*(7), 763\u2013770. "
-                  "https://doi.org/10.1016/0305-0548(94)00059-H",
-    "lahdelma": "Lahdelma, R., & Salminen, P. (2001). SMAA-2: Stochastic multicriteria acceptability analysis for group "
-                "decision making. *Operations Research, 49*(3), 444\u2013454. "
-                "https://doi.org/10.1287/opre.49.3.444.11220",
     "cottier": "Cottier, B., You, J., Martemianova, N., & Owen, D. (2024, November 4). *How far behind are open "
                "models?* Epoch AI. https://epoch.ai/blog/open-models-report",
+    "edwards": "Edwards, J., & Emberson, L. (2026, May 29). *Open models lag state-of-the-art closed models by 4 "
+               "months*. Epoch AI. https://epoch.ai/data-insights/open-closed-eci-gap",
     "moonshot_hf": "Moonshot AI. (n.d.-a). *Kimi-K3* [Model card]. Hugging Face. " + _retrieved_from(LICENCE_PAGES_READ)
                    + "https://huggingface.co/moonshotai/Kimi-K3",
     "moonshot_gh": "Moonshot AI. (n.d.-b). *Kimi-K3* [Computer software]. GitHub. " + _retrieved_from(LICENCE_PAGES_READ)
@@ -250,7 +239,7 @@ def limitations_1b() -> None:
         st.markdown(
             "- **Licence class (Views 1 and 2):** Epoch's accessibility label, read as what it allows a bank to do. "
             "Restricted use is a licence that limits users or purposes. Non-commercial is a licence that does not allow "
-            "commercial use, and a missing licence also counts as non-commercial (Cottier et al., 2024).\n"
+            "commercial use, and a missing licence also counts as non-commercial.\n"
             "- **View 1:** one dot per model. The best model of each class is labelled with its 90% interval.\n"
             "- **View 2:** the open-weight models of each release year, as a share of the year's total by licence class. "
             f"2026 is a part year, to {ep['epoch_last'].rsplit(' ', 1)[0]}.\n"
@@ -300,7 +289,7 @@ def limitations_2() -> None:
         "- **Reported and independent GPQA Diamond scores:** Lee and Edelman (2025). Scores of "
         "eight models transcribed by the group on 14 Nov 2026. File in the app: `gpqa_reported_vs_epoch.csv`. Used in "
         "View 3."])
-    _references_block([ref_hub(hub["downloaded"], "a"), ref_epoch(ep["epoch_retrieved"], "b"), REF["gpqa"], REF["ho"]])
+    _references_block([ref_hub(hub["downloaded"], "a"), ref_epoch(ep["epoch_retrieved"], "b"), REF["gpqa"], REF["edwards"], REF["ho"]])
     with st.expander("**Methods**"):
         st.markdown(
             "- **Restricted and accessible (View 1):** restricted means a US developer and no downloadable weights. "
@@ -444,8 +433,7 @@ def limitations_1a(marked: list[str] | None = None) -> None:
                      "terms in the hover are the group's reading of those pages. Used in View 2 only.")
         st.markdown("\n".join(lines))
     _references_block([ref_epoch(snap.get("epoch_retrieved")), ref_litellm(snap.get("litellm_retrieved")),
-                       ref_lmarena(snap.get("lmarena_published")), REF["ho"], REF["chiang"], REF["singh"],
-                       REF["diakoulaki"], REF["lahdelma"]])
+                       ref_lmarena(snap.get("lmarena_published")), REF["ho"]])
     with st.expander("**Methods**"):
         st.markdown(
             "- **Scope:** Epoch models released in the chosen window (2025 to 2026 by default), filtered by route and "
@@ -464,10 +452,10 @@ def limitations_1a(marked: list[str] | None = None) -> None:
             "- **Price frontier (View 1):** a model joins the line only when its ECI is higher than that of every cheaper "
             "model. Models on the line are not ranked against each other.\n"
             "- **Percentile rank (View 2):** (rank - 1) / (n - 1) × 100 among the models shown, cheaper ranks higher.\n"
-            "- **Weights (View 2):** CRITIC (Diakoulaki et al., 1995), or custom (the sliders start at "
+            "- **Weights (View 2):** CRITIC (weights taken from the data), or custom (the sliders start at "
             "5/5/5 = equal).\n"
             "- **Weighted score (View 2):** the sum of weight × percentile over the criteria in use, from 0 to 100.\n"
-            "- **First-place share (View 2):** SMAA first-rank acceptability (Lahdelma & Salminen, 2001) over the 1,033 "
+            "- **First-place share (View 2):** SMAA first-rank acceptability over the 1,033 "
             "different weightings that the three 0 to 10 sliders can produce (settings with the same shares count once).\n"
             "- **Rounding:** charts and hovers show the LMArena rating as a whole number and the ECI to one decimal. Tables "
             "and CSV downloads keep the original values, except the computed weighted score and first-place share, which "
@@ -477,9 +465,8 @@ def limitations_1a(marked: list[str] | None = None) -> None:
             "- **Epoch Capabilities Index (ECI):** a non-profit's joint fit of benchmark results (method: Ho et al., 2025; the Hub file of 20 Nov 2026 marks 58 benchmarks as part of it), used in the "
             "Stanford AI Index and the International AI Safety Report. It keeps each model's best setting, leans to maths "
             "and reasoning, covers smaller and non-US models less well, and its 90% intervals overlap for neighbours.\n"
-            "- **LMArena:** millions of public pairwise votes (Chiang et al., 2024), quoted by labs at launch. Voters "
-            "are self-selected, longer, well-formatted answers win more often, and labs can test private variants "
-            "(Singh et al., 2025). It agrees with capability at about " + snap.corr_text() + " at the default settings, so it is a "
+            "- **LMArena:** a public leaderboard of pairwise votes, quoted by labs at launch. Voters "
+            "are self-selected visitors of a public website. It agrees with capability at about " + snap.corr_text() + " at the default settings, so it is a "
             "cross-check more than an independent measure.\n"
             "- **LiteLLM:** a widely used open-source gateway whose price file is updated by "
             "community pull requests and carries no date. List price per token is not cost per task.\n"

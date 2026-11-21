@@ -90,12 +90,35 @@ All three notebooks have `REFRESH = True`, so they try a fresh download first an
 ## Limitations
 
 - **Capability index:** Epoch's index leans to maths and reasoning, covers smaller and non-US models less well, and the 90% intervals of neighbouring models overlap.
-- **Human preference:** LMArena voters are self-selected and longer, well-formatted answers win more often.
+- **Human preference:** LMArena voters are self-selected. Answer length is the largest style effect found in an analysis of Arena votes, and markdown formatting has a smaller effect (Li et al., 2024, listed under Method and background references below). The analysis is observational.
 - **Price:** list price per token is not the cost per task. This is a snapshot and not a quote.
 - **Name matching:** models are matched across sources by name, and ambiguous versions are left out. Only View 2 depends on the LMArena match.
 - **Relative percentiles:** percentile ranks depend on which models are in the comparison, so a small gap counts as much as a large one when it moves a model by one place.
 - **Double counting:** capability and preference agree at about 0.75, so equal weight on both tilts the ranking towards quality. CRITIC lowers both weights.
 - **Not covered:** hosting cost, security review, provider data handling and performance on the bank's own documents and languages.
+
+## Method and background references
+
+These works are not shown in the app. The app lists data sources only. This section records where each method or background statement comes from and what the group checked. Every entry was looked up on 22 Nov 2026 unless another date is given.
+
+- **Chiang et al. (2024)** (Chiang, W.-L., Zheng, L., Sheng, Y., Angelopoulos, A. N., Li, T., Li, D., Zhu, B., Zhang, H., Jordan, M. I., Gonzalez, J. E., & Stoica, I. (2024). Chatbot Arena: An open platform for evaluating LLMs by human preference. In *Proceedings of the 41st International Conference on Machine Learning* (Vol. 235, pp. 8359–8388). PMLR. https://proceedings.mlr.press/v235/chiang24b.html)
+  - *Supports:* LMArena ranks models from crowdsourced pairwise votes of visitors to a public website.
+  - *Check:* title, authors, venue and pages match the proceedings page. The paper reports over 240 thousand votes at the time of writing. An earlier wording of the app, "millions of votes", did not come from this paper and was removed.
+- **Li, Angelopoulos & Chiang (2024)** (Li, T., Angelopoulos, A., & Chiang, W.-L. (2024, August 29). *Does style matter? Disentangling style and substance in Chatbot Arena* [Blog post]. LMSYS Org. https://lmsys.org/blog/2024-08-28-style-control)
+  - *Supports:* the limitation that answer style affects LMArena. The post controls for answer length and markdown, finds that length is the dominant style factor and that markdown effects are smaller.
+  - *Limit:* the authors state that the analysis is observational, so other causes, such as longer reasoning that improves quality, are not excluded.
+- **Singh et al. (2025)** (Singh, S., Nan, Y., Wang, A., D'souza, D., Kapoor, S., Üstün, A., Koyejo, S., Deng, Y., Longpre, S., Smith, N. A., Ermis, B., Fadaee, M., & Hooker, S. (2025). *The leaderboard illusion* [Preprint]. arXiv. https://doi.org/10.48550/arXiv.2504.20879)
+  - *Supports:* labs can test private variants of a model before release.
+  - *Check:* read on 21 Nov 2026. The paper does not say that longer, well-formatted answers win more often, so it is not cited for that statement.
+- **Diakoulaki et al. (1995)** (Diakoulaki, D., Mavrotas, G., & Papayannakis, L. (1995). Determining objective weights in multiple criteria problems: The CRITIC method. *Computers & Operations Research, 22*(7), 763–770. https://doi.org/10.1016/0305-0548(94)00059-H)
+  - *Supports:* the CRITIC weights of View 2. The method gives more weight to a criterion that varies more across the models and agrees less with the other criteria.
+  - *Check:* volume, pages and DOI match the journal record. This is why CRITIC lowers the weights of capability and human preference, which agree at about 0.75.
+- **Lahdelma & Salminen (2001)** (Lahdelma, R., & Salminen, P. (2001). SMAA-2: Stochastic multicriteria acceptability analysis for group decision making. *Operations Research, 49*(3), 444–454. https://doi.org/10.1287/opre.49.3.444.11220)
+  - *Supports:* the first-place share of View 2. SMAA-2 looks at the share of weightings for which a model takes a given rank.
+  - *Check:* details and abstract match the publisher record. The app does not draw random weights. It counts the 1,033 different weightings that the three sliders can produce, so the share is computed in the style of SMAA-2 and not by the original simulation.
+- **Cottier et al. (2024)** (Cottier, B., You, J., Martemianova, N., & Owen, D. (2024, November 4). *How far behind are open models?* Epoch AI. https://epoch.ai/blog/open-models-report)
+  - *Supports:* Story 1b reads Epoch's accessibility label as a licence class. Table A1 in Appendix A.1 of the report defines the categories. The non-commercial category also includes releases that have no licence or no clear licence, which is the rule that Story 1b applies.
+  - *Check:* Table A1 was read on the report page on 22 Nov 2026. Appendix A is a collapsed section of the page that opens on a click, so a plain text copy of the page does not show it.
 
 ## Restrictions
 

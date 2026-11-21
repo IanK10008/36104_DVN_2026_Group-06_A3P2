@@ -120,13 +120,22 @@ def _region_groups(regions: list[str]) -> list[tuple[str, int, int]]:
 
 def _add_region_groups(fig: go.Figure, groups: list[tuple[str, int, int]], plot_w: int, left: int, yref: str,
                        row=None) -> None:
-    """Region name left of the row names and a dark line between two regions."""
+    """Region name left of the row names and a dark line between two regions.
+    Positions are pixel offsets from the left edge of the plot area, so they do not move when full screen widens the chart.
+    plot_w is no longer used and is kept so that the callers stay the same."""
+    line = {"color": "#6b7280", "width": 1.5}
     for k, (name, a, b) in enumerate(groups):
-        fig.add_annotation(xref="paper", yref=yref, x=-(left - 20) / plot_w, y=(a + b) / 2, text=f"<b>{name}</b>",
+        fig.add_annotation(xref="paper", yref=yref, x=0, xshift=-(left - 20), y=(a + b) / 2, text=f"<b>{name}</b>",
                            showarrow=False, xanchor="left", font={"size": 12, "color": MUTED})
         if k:
-            fig.add_shape(type="line", xref="paper", yref=yref, x0=-(left - 10) / plot_w, x1=1, y0=a - 0.5, y1=a - 0.5,
-                          line={"color": "#6b7280", "width": 1.5})
+            fig.add_shape(type="line", xref="paper", yref=yref, x0=0, x1=1, y0=a - 0.5, y1=a - 0.5, line=line)
+            fig.add_shape(type="line", xref="paper", yref=yref, xsizemode="pixel", xanchor=0, x0=-(left - 10), x1=0,
+                          y0=a - 0.5, y1=a - 0.5, line=line)
+
+
+def _no_fullscreen(key: str) -> None:
+    """Hide the full screen button of one chart. Full screen stretches the chart to the screen width, so the page scrolls instead."""
+    st.html(f'<style>.st-key-{key} button[aria-label*="ullscreen"]{{display:none}}</style>')
 
 
 # --------------------------------------------------------------------------- #
@@ -185,6 +194,8 @@ the architect can see what is known about how each developer builds and releases
 **Form chosen:** A heatmap (Visual Vocabulary: *correlation*, used here as a company-by-subdomain grid). Each cell
 shows the share of indicators disclosed, with the count written inside, so no value needs hovering. Rows are grouped by
 headquarters region and columns by domain.
+
+**Based on** the heatmap "Scores by Major Dimensions of Transparency, 2025" in the Foundation Model Transparency Index, December 2025 edition ([Stanford CRFM, 2025](https://crfm.stanford.edu/fmti/December-2025)). This view redesigns it with developers as rows grouped by headquarters region, subdomains as columns, the count of disclosed indicators written in each cell, and grey rows for the developers that the Index does not score.
 """
 
 B_DECISION = """
@@ -245,6 +256,7 @@ def render_fmti() -> None:
     st.caption(f"{len(subs)} of 19 subdomains shown. " + ZOOM_NOTE)
     st.markdown("**Share of indicators disclosed, by company and subdomain**")
     _names_key(off_list, [n for n, _ in grey])
+    _no_fullscreen("a_heat")
     st.plotly_chart(chart_heat(table, s, sub_dom, grey), width="content", key="a_heat", config=PLOT_CONFIG)
     per_co = s.groupby("Developer")["Disclosed"].agg(["sum", "count"])
     per_co = per_co.reindex([c for c in table["company"] if c in per_co.index]).dropna()

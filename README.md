@@ -26,7 +26,7 @@ The app uses the Epoch Capabilities Index file in every story. Story 1a also use
 
 ## Deployed app
 
-The app is deployed on Streamlit Community Cloud at https://36104dvn2026group-06a3p2-nsynktqbac4mjhphb8dah3.streamlit.app/
+The app is deployed on Streamlit Community Cloud at https://iank10008-36104-dvn-2026-group-06-a3p2-app-zezmbz.streamlit.app/
 
 If the page shows "This app has gone to sleep due to inactivity", click the button "Yes, get this app back up!" and wait about one minute. The app loads normally after that.
 

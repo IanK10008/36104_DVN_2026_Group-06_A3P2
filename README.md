@@ -24,6 +24,12 @@ A3P2 is the app, built in one folder per user story. Each story has its own page
 
 The app uses the Epoch Capabilities Index file in every story. Story 1a also uses the LiteLLM price file and the LMArena leaderboard file, Story 3 uses the AI Incident Database export, and Story 2 View 2 uses the Epoch Benchmarking Hub ZIP.
 
+## Deployed app
+
+The app is deployed on Streamlit Community Cloud at https://36104dvn2026group-06a3p2-nsynktqbac4mjhphb8dah3.streamlit.app/
+
+If the page shows "This app has gone to sleep due to inactivity", click the button "Yes, get this app back up!" and wait about one minute. The app loads normally after that.
+
 ## Quick start
 
 ```
